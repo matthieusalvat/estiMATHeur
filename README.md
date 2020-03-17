@@ -26,7 +26,9 @@ Si vous voulez récupérer un des ces exercices pour le modifier ou récupérer 
 
 Oui c'est en cours !
 
-Si vous avez besoin d'une version "hors-ligne" rapidement vous pouvez directement télécharger le contenu de ce dépôt au format Zip (appuyer sur le bouton "Clone or download" puis "Donwload ZIP"). Vous aurez ensuite à dézipper ce fichier sur votre tablette/téléphone/PC. Il suffira ensuite de cliquer sur le fichier "index.html" pour lancer l'estiMATHeur dans votre navigateur web préféré. 
+Si vous avez besoin d'une version "hors-ligne" rapidement vous pouvez directement télécharger le contenu de ce dépôt au format Zip (appuyer sur le bouton "Clone or download" puis "Donwload ZIP"). Vous aurez à dézipper ce fichier sur votre tablette/téléphone/PC. Il suffira ensuite de cliquer sur le fichier "index.html" pour lancer l'estiMATHeur dans votre navigateur web préféré. 
+
+Les liens de lecture de QRCode intégrés à la page de l'estiMATHeur vous permettont de charger un exercice sans avoir d'accès à Internet.
 
 ## Traçage, données personnelles et RGPD
 
