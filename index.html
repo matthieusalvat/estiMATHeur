@@ -371,8 +371,10 @@
 	  </div>
 	  <div id='about'>
 		<hr/>
-		<p>Ce programme est sous licence GPL2, plus d'informations sur le site du projet  <a target="_blank" href="https://github.com/matthieusalvat/estiMATHeur/">sur GitHub</a>.</p>
-		<p>Merci à <a target="_blank" href="https://lakanal.net/aide/pictchou.htm">lakanal.net</a> d'autoriser l'utilisation de leur police de caractères Picthchou pour ce site</p>
+		<p>Ce programme est sous licence GPL2, plus d'informations sur le site du <a target="_blank" href="https://github.com/matthieusalvat/estiMATHeur/">projet GitHub</a>.</p>
+		<p>Merci à <a target="_blank" href="https://lakanal.net/aide/pictchou.htm">lakanal.net</a> d'autoriser l'utilisation de sa police de caractères Picthchou.</p>
+		<p>Merci à l'équipe <a target="_blank" href="http://blog.espe-bretagne.fr/ace/">ACE</a> pour la création de l'estimateur et les justifications scientifiques et pédagogiques de son usage.</p>
+
 	  </div>
 	</div>
   </body>
@@ -678,14 +680,12 @@
   function url2opt(urlParam) {
 	exercices=[];
 	const ex=urlParam.split('_');
-	console.log("ex", ex);
 	let c;
 	ex.forEach((e,i) => {
 	  if (e && e!="") {
 		exercices.push(url2optParts(e));
 	  }
 	});
-	console.log("exercices", exercices);
   }
 
 
