@@ -214,20 +214,23 @@
 		  <input type="number" id="max" value="10" class="form-control" />
 		</div>
 		<div class="form-group col-xs-12 col-sm-6">
-		  <label for="numbering">Type de numérotation</label>
-		  <select id="numbering" class="selectpicker" data-width="100%">
-			<option value="">aucune</option>
-			<option value="eu">toutes les unités</option>
-			<option value="esu">une unité sur deux</option>
-			<option value="1" selected>une seule</option>
-			<option value="2">deux</option>
-			<option value="3">trois</option>
-			<option value="4">quatre</option>
-			<option value="5">cinq</option>
+		  <label for="display">Format des nombres</label>
+		  <select id="display" class="selectpicker" data-width="100%">
+			<option value="n" selected>chiffres arabes</option>
+			<option value="H">chiffres héxadécimaux</option>
+			<option value="r">chiffres romains</option>
+			<option value="d">dés</option>
+			<option value="h">mains</option>
+			<option value="b">petites boites (5 cases)</option>
+			<option value="B">grandes boites (10 cases)</option>
 		  </select>
 		</div>
 		<div class="form-group col-xs-12 col-sm-6">
-		  <label for="graduation">Type de graduation</label>
+		  <label for="total">Nombre de questions</label>
+		  <input type="number" id="total" value="10" class="form-control" />
+		</div>
+		<div class="form-group col-xs-12 col-sm-6">
+		  <label for="graduation">Affichage de la graduation</label>
 		  <select id="graduation" class="selectpicker" data-width="100%">
 			<option value="" selected>aucune</option>
 			<option value="eu">toutes les unités</option>
@@ -240,25 +243,20 @@
 		  </select>
 		</div>
 		<div class="form-group col-xs-12 col-sm-6">
-		  <label for="margin">Marge d'erreur</label>
-		  <select id="margin" class="selectpicker" data-width="100%">
-			<option value="2p">2%</option>
-			<option value="5p">5%</option>
-			<option value="10p">10%</option>
-			<option value="20p">20%</option>
-			<option value="1" selected>une unité</option>
-			<option value="2">deux unités</option>
-			<option value="3">trois unités</option>
-			<option value="4">quatre unités</option>			
-			<option value="5">cinq unités</option>			
+		  <label for="numbering">Affichage de la numérotation</label>
+		  <select id="numbering" class="selectpicker" data-width="100%">
+			<option value="">aucune</option>
+			<option value="eu">toutes les unités</option>
+			<option value="esu">une unité sur deux</option>
+			<option value="1" selected>une seule</option>
+			<option value="2">deux</option>
+			<option value="3">trois</option>
+			<option value="4">quatre</option>
+			<option value="5">cinq</option>
 		  </select>
 		</div>
 		<div class="form-group col-xs-12 col-sm-6">
-		  <label for="total">Nombre de questions pour l'exercice</label>
-		  <input type="number" id="total" value="10" class="form-control" />
-		</div>
-		<div class="form-group col-xs-12 col-sm-6">
-		  <label for="tolerance">Tolérance d'erreur pour valider l'exercice</label>
+		  <label for="tolerance">Nombre d'erreur pour valider l'exercice</label>
 		  <select id="tolerance" class="selectpicker" data-width="100%">
 			<option value="0">zéro erreur</option>
 			<option value="1">une erreur</option>
@@ -279,19 +277,21 @@
 		  </select>
 		</div>
 		<div class="form-group col-xs-12 col-sm-6">
-		  <label for="display">Quantité affichées sous forme de</label>
-		  <select id="display" class="selectpicker" data-width="100%">
-			<option value="n" selected>chiffres arabes</option>
-			<option value="H">chiffres héxadécimaux</option>
-			<option value="r">chiffres romains</option>
-			<option value="d">dés</option>
-			<option value="h">mains</option>
-			<option value="b">petites boites (5 cases)</option>
-			<option value="B">grandes boites (10 cases)</option>
+		  <label for="margin">Marge d'erreur</label>
+		  <select id="margin" class="selectpicker" data-width="100%">
+			<option value="2p">2%</option>
+			<option value="5p">5%</option>
+			<option value="10p">10%</option>
+			<option value="20p">20%</option>
+			<option value="1" selected>une unité</option>
+			<option value="2">deux unités</option>
+			<option value="3">trois unités</option>
+			<option value="4">quatre unités</option>			
+			<option value="5">cinq unités</option>			
 		  </select>
 		</div>
 		<div class="form-group col-xs-12">
-		  <button class="btn btn-default btn-primary start">Appliquer</button>
+		  <button class="btn btn-default btn-primary start">Afficher</button>
 		  <button class="btn btn-default share" id="exercices">Partager</button>
 		</div>
 	  </div>
@@ -349,6 +349,7 @@
 		<div class="form-group col-xs-12 col-sm-6">
 		  <button class="btn btn-default btn-primary" id="add"><i class="fa fa-plus"></i> Ajouter l'exercice courant</button>
 		  <span id="edit">
+			<p>Veuillez "Afficher" l'exercice afin de pouvoir sauvegarder vos modifications</p>
 			<button class="btn btn-default btn-primary" id="save"><i class="fa fa-save"></i> Sauvegarder les modifications</button>
 			<button class="btn btn-default" id="cancel"><i class="fa fa-ban"></i> Annuler les modifications</button>
 		  </span>

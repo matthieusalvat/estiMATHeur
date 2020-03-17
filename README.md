@@ -2,15 +2,34 @@
 
 ## Comment ça marche ?
 
-L'estiMATHeur permet de créer un ou plusieurs exercices de placement de nombre.
+L'estiMATHeur est un outil au service de la construction du nombre. Comme son nom l'indique, il permet de travailler l'estimation. Chez les enfants, le SNA (Système Numérique Approximatif) s'améliore avec l'âge mais il est intéressant de l'entraîner.
 
-## Liste d'exercies
+Très inspiré de l’outil « Estimateur » issu du dispositif ACE il "est conçu pour mettre en relation les représentations analogiques de la ligne numérique mentale".
 
-Si vous voulez récupérer un des ces exercices pour le modifier ou récupérer son QRCode, copier l'URL de ce dernier et modifier la partie ***m=g*** par ***m=m***.
+L'estiMATHeur permet de créer un ou plusieurs exercices de placement de nombre et d'en permettre l'accès aux élèves via un QR code.
+
+
+## Exemples d'exercices
+
+- Pour découvrir l'estimatheur de 1 à  5, puis de 1 à  10 avec les chiffres arabes :
+
+[https://matthieusalvat.github.io/estiMATHeur/?e=m:0,M:5,e:1,n:esu,g:eu,t:5,T:10p,d:n|m:0,M:5,e:1,n:1,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:esu,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:n&m=m](https://matthieusalvat.github.io/estiMATHeur/?e=m:0,M:5,e:1,n:esu,g:eu,t:5,T:10p,d:n|m:0,M:5,e:1,n:1,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:esu,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:n&m=m)
+
+[https://matthieusalvat.github.io/estiMATHeur/?e=m:0,M:5,e:1,n:esu,g:eu,t:5,T:10p,d:n|m:0,M:5,e:1,n:1,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:esu,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:n&m=g](https://matthieusalvat.github.io/estiMATHeur/?e=m:0,M:5,e:1,n:esu,g:eu,t:5,T:10p,d:n|m:0,M:5,e:1,n:1,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:esu,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:n&m=g)
+
+- Avec le dés ou les doigts de 1 à  5, puis de 1 à  10
+
+[https://matthieusalvat.github.io/estiMATHeur/?e=m:0,M:5,e:1,n:,g:,t:5,T:10p,d:d|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:d|m:0,M:5,e:1,n:,g:,t:5,T:10p,d:h|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:h&m=m](https://matthieusalvat.github.io/estiMATHeur/?e=m:0,M:5,e:1,n:,g:,t:5,T:10p,d:d|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:d|m:0,M:5,e:1,n:,g:,t:5,T:10p,d:h|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:h&m=m)
+
+[https://matthieusalvat.github.io/estiMATHeur/?e=m:0,M:5,e:1,n:,g:,t:5,T:10p,d:d|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:d|m:0,M:5,e:1,n:,g:,t:5,T:10p,d:h|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:h&m=g](https://matthieusalvat.github.io/estiMATHeur/?e=m:0,M:5,e:1,n:,g:,t:5,T:10p,d:d|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:d|m:0,M:5,e:1,n:,g:,t:5,T:10p,d:h|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:h&m=g)
+
+Si vous voulez récupérer un des ces exercices pour le modifier ou récupérer son QRCode, copier l'URL de ce dernier et modifier la partie ***&m=g*** par ***&m=m***.
 
 ## Une version tablette est-elle prévue ?
 
-Oui c'est en cours, mais si vous avez besoin d'une version "hors-ligne" rapidement vous pouvez directement télécharger le contenu de ce dépôt au format Zip (appuyer sur le bouton "Clone or download" puis "Donwload ZIP"). Vous aurez ensuite à dézipper ce fichier sur votre tablette/téléphone/PC. Il suffira ensuite de cliquer sur le fichier "index.html" pour lancer l'estiMATHeur dans votre navigateur web préféré. 
+Oui c'est en cours !
+
+Si vous avez besoin d'une version "hors-ligne" rapidement vous pouvez directement télécharger le contenu de ce dépôt au format Zip (appuyer sur le bouton "Clone or download" puis "Donwload ZIP"). Vous aurez ensuite à dézipper ce fichier sur votre tablette/téléphone/PC. Il suffira ensuite de cliquer sur le fichier "index.html" pour lancer l'estiMATHeur dans votre navigateur web préféré. 
 
 ## Comprendre la syntaxe des exercices dans l'URL
 
@@ -52,3 +71,4 @@ Le code est sous GPL2.
 
 Merci à [lakanal.net](https://lakanal.net/aide/pictchou.htm) d'avoir permis d'intégrer leur police de caractères Picthchou (pour afficher les mains et les boites) sur ce projet.
 
+Merci à l'équipe [ACE](http://blog.espe-bretagne.fr/ace/) pour la création de l'estimateur et les justifications scientifiques et pédagogiques de son usage.
