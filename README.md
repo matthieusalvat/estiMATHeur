@@ -13,13 +13,9 @@ L'estiMATHeur permet de créer un ou plusieurs exercices de placement de nombre 
 
 - Pour découvrir l'estimatheur de 1 à  5, puis de 1 à  10 avec les chiffres arabes :
 
-[https://matthieusalvat.github.io/estiMATHeur/?e=m:0,M:5,e:1,n:esu,g:eu,t:5,T:10p,d:n|m:0,M:5,e:1,n:1,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:esu,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:n&m=m](https://matthieusalvat.github.io/estiMATHeur/?e=m:0,M:5,e:1,n:esu,g:eu,t:5,T:10p,d:n|m:0,M:5,e:1,n:1,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:esu,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:n&m=m)
-
 [https://matthieusalvat.github.io/estiMATHeur/?e=m:0,M:5,e:1,n:esu,g:eu,t:5,T:10p,d:n|m:0,M:5,e:1,n:1,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:esu,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:n&m=g](https://matthieusalvat.github.io/estiMATHeur/?e=m:0,M:5,e:1,n:esu,g:eu,t:5,T:10p,d:n|m:0,M:5,e:1,n:1,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:esu,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:n&m=g)
 
-- Avec le dés ou les doigts de 1 à  5, puis de 1 à  10
-
-[https://matthieusalvat.github.io/estiMATHeur/?e=m:0,M:5,e:1,n:,g:,t:5,T:10p,d:d|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:d|m:0,M:5,e:1,n:,g:,t:5,T:10p,d:h|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:h&m=m](https://matthieusalvat.github.io/estiMATHeur/?e=m:0,M:5,e:1,n:,g:,t:5,T:10p,d:d|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:d|m:0,M:5,e:1,n:,g:,t:5,T:10p,d:h|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:h&m=m)
+- Avec le dés ou les doigts de 1 à  5, puis de 1 à  10 :
 
 [https://matthieusalvat.github.io/estiMATHeur/?e=m:0,M:5,e:1,n:,g:,t:5,T:10p,d:d|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:d|m:0,M:5,e:1,n:,g:,t:5,T:10p,d:h|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:h&m=g](https://matthieusalvat.github.io/estiMATHeur/?e=m:0,M:5,e:1,n:,g:,t:5,T:10p,d:d|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:d|m:0,M:5,e:1,n:,g:,t:5,T:10p,d:h|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:h&m=g)
 
@@ -30,6 +26,12 @@ Si vous voulez récupérer un des ces exercices pour le modifier ou récupérer 
 Oui c'est en cours !
 
 Si vous avez besoin d'une version "hors-ligne" rapidement vous pouvez directement télécharger le contenu de ce dépôt au format Zip (appuyer sur le bouton "Clone or download" puis "Donwload ZIP"). Vous aurez ensuite à dézipper ce fichier sur votre tablette/téléphone/PC. Il suffira ensuite de cliquer sur le fichier "index.html" pour lancer l'estiMATHeur dans votre navigateur web préféré. 
+
+## Traçage, données personnelles et RGPD
+
+L'estiMATHeur ne stocke aucune données personnelles et ne met en place aucun type de traçage de son utilisation.
+
+Toutes les données des exercices créés restent sur votre ordinateur (utilisation de la fonction de *localStorage* de votre navigateur) ou via les liens et QRCode que vous générez.
 
 ## Comprendre la syntaxe des exercices dans l'URL
 
