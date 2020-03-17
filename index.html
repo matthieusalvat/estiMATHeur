@@ -638,7 +638,7 @@
 	} else {
 	  url += opt2url(opt);
 	}
-	qrcode.makeCode(url);
+	qrcode.makeCode(url+"&m=g");
 	$("#shareURL").attr('href', url+"&m=g").text(url+"&m=g");
 	$("#shareEditURL").attr('href', url+"&m=m").text(url+"&m=m");
 	$("#share").modal("show");
