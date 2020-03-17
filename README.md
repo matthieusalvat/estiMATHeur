@@ -13,11 +13,11 @@ L'estiMATHeur permet de créer un ou plusieurs exercices de placement de nombre 
 
 - Pour découvrir l'estimatheur de 1 à  5, puis de 1 à  10 avec les chiffres arabes :
 
-[https://matthieusalvat.github.io/estiMATHeur/?e=m:0,M:5,e:1,n:esu,g:eu,t:5,T:10p,d:n|m:0,M:5,e:1,n:1,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:esu,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:n&m=g](https://matthieusalvat.github.io/estiMATHeur/?e=m:0,M:5,e:1,n:esu,g:eu,t:5,T:10p,d:n|m:0,M:5,e:1,n:1,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:esu,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:,g:eu,t:5,T:10p,d:n|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:n&m=g)
+[https://matthieusalvat.github.io/estiMATHeur/?e=m:0,M:5,e:1,n:esu,g:eu,t:5,T:10p,d:n_m:0,M:5,e:1,n:1,g:eu,t:5,T:10p,d:n_m:0,M:10,e:1,n:esu,g:eu,t:5,T:10p,d:n_m:0,M:10,e:1,n:,g:eu,t:5,T:10p,d:n_m:0,M:10,e:1,n:,g:,t:5,T:10p,d:n&m=g](https://matthieusalvat.github.io/estiMATHeur/?e=m:0,M:5,e:1,n:esu,g:eu,t:5,T:10p,d:n_m:0,M:5,e:1,n:1,g:eu,t:5,T:10p,d:n_m:0,M:10,e:1,n:esu,g:eu,t:5,T:10p,d:n_m:0,M:10,e:1,n:,g:eu,t:5,T:10p,d:n_m:0,M:10,e:1,n:,g:,t:5,T:10p,d:n&m=g)
 
 - Avec le dés ou les doigts de 1 à  5, puis de 1 à  10 :
 
-[https://matthieusalvat.github.io/estiMATHeur/?e=m:0,M:5,e:1,n:,g:,t:5,T:10p,d:d|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:d|m:0,M:5,e:1,n:,g:,t:5,T:10p,d:h|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:h&m=g](https://matthieusalvat.github.io/estiMATHeur/?e=m:0,M:5,e:1,n:,g:,t:5,T:10p,d:d|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:d|m:0,M:5,e:1,n:,g:,t:5,T:10p,d:h|m:0,M:10,e:1,n:,g:,t:5,T:10p,d:h&m=g)
+[https://matthieusalvat.github.io/estiMATHeur/?e=m:0,M:5,e:1,n:,g:,t:5,T:10p,d:d_m:0,M:10,e:1,n:,g:,t:5,T:10p,d:d_m:0,M:5,e:1,n:,g:,t:5,T:10p,d:h_m:0,M:10,e:1,n:,g:,t:5,T:10p,d:h&m=g](https://matthieusalvat.github.io/estiMATHeur/?e=m:0,M:5,e:1,n:,g:,t:5,T:10p,d:d_m:0,M:10,e:1,n:,g:,t:5,T:10p,d:d_m:0,M:5,e:1,n:,g:,t:5,T:10p,d:h_m:0,M:10,e:1,n:,g:,t:5,T:10p,d:h&m=g)
 
 Si vous voulez récupérer un des ces exercices pour le modifier ou récupérer son QRCode, copier l'URL de ce dernier et modifier la partie ***&m=g*** par ***&m=m***.
 
@@ -60,8 +60,8 @@ Où &lt;paramètres de l'exercice&gt; contient une suite de clé/valeur séparé
 
 Exemple : ***m:0,M:10,e:1,n:,g:eu,t:5,T:2,d:n*** peut se traduire en "chercher 5 nombres (t:5) entre 0 (m:0) et 10 (M:10) affichés sous forme de chiffres arabes (d:n) avec une marge d'erreur d'une unité (e:1) sans afficher de numérotation (n:) et avec une graduation à chaque unité (g:eu). L'exercice sera validé si l'élève ne fait pas plus de 2 erreurs (T:2)".
 
-Vous pouvez enchainer plusieurs exercices en les séparants par le caractère ***|*** comme dans l'exemple suivant
-[https://matthieusalvat.github.io/estiMATHeur/index.html?m=g&e=m:0,M:10,e:1,n:,g:eu,t:5,T:2,d:n|m:0,M:10,e:1,n:,g:esu,t:5,T:2,d:d|m:0,M:10,e:1,n:,g:1,t:5,T:2,d:h|m:0,M:10,e:1,n:,g:,t:5,T:2,d:B](https://matthieusalvat.github.io/estiMATHeur/index.html?m=g&e=m:0,M:10,e:1,n:,g:eu,t:5,T:2,d:n|m:0,M:10,e:1,n:,g:esu,t:5,T:2,d:d|m:0,M:10,e:1,n:,g:1,t:5,T:2,d:h|m:0,M:10,e:1,n:,g:,t:5,T:2,d:B)
+Vous pouvez enchainer plusieurs exercices en les séparants par le caractère ***_*** comme dans l'exemple suivant
+[https://matthieusalvat.github.io/estiMATHeur/index.html?m=g&e=m:0,M:10,e:1,n:,g:eu,t:5,T:2,d:n_m:0,M:10,e:1,n:,g:esu,t:5,T:2,d:d_m:0,M:10,e:1,n:,g:1,t:5,T:2,d:h_m:0,M:10,e:1,n:,g:,t:5,T:2,d:B](https://matthieusalvat.github.io/estiMATHeur/index.html?m=g&e=m:0,M:10,e:1,n:,g:eu,t:5,T:2,d:n_m:0,M:10,e:1,n:,g:esu,t:5,T:2,d:d_m:0,M:10,e:1,n:,g:1,t:5,T:2,d:h_m:0,M:10,e:1,n:,g:,t:5,T:2,d:B)
 
 ## Mode de développement
 

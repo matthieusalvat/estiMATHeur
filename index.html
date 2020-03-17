@@ -537,7 +537,7 @@
 	}
   });
   $("#try").on("click", () => {
-	url2opt("m:0,M:10,e:1,n:,g:eu,t:5,T:2,d:n|m:0,M:10,e:1,n:,g:esu,t:5,T:2,d:d|m:0,M:10,e:1,n:,g:1,t:5,T:2,d:h|m:0,M:10,e:1,n:,g:,t:5,T:2,d:B");
+	url2opt("m:0,M:10,e:1,n:,g:eu,t:5,T:2,d:n_m:0,M:10,e:1,n:,g:esu,t:5,T:2,d:d_m:0,M:10,e:1,n:,g:1,t:5,T:2,d:h_m:0,M:10,e:1,n:,g:,t:5,T:2,d:B");
 	conf.mode="g";
 	console.log(opt, exercices);
 	$("#game").show();
@@ -646,7 +646,7 @@
 	  const list = exercices.map((e)=>{
 		return opt2url(e);
 	  });
-	  url += list.join("|");
+	  url += list.join("_");
 	} else {
 	  url += opt2url(opt);
 	}
@@ -677,7 +677,7 @@
   
   function url2opt(urlParam) {
 	exercices=[];
-	const ex=urlParam.split('|');
+	const ex=urlParam.split('_');
 	console.log("ex", ex);
 	let c;
 	ex.forEach((e,i) => {
