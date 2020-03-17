@@ -379,7 +379,6 @@
   <script>
   $.urlParam = function(name){
 	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-	console.log(name, results);
     if (results==null){
 	  return null;
     } else{
@@ -679,12 +678,14 @@
   function url2opt(urlParam) {
 	exercices=[];
 	const ex=urlParam.split('|');
+	console.log("ex", ex);
 	let c;
 	ex.forEach((e,i) => {
 	  if (e && e!="") {
 		exercices.push(url2optParts(e));
 	  }
 	});
+	console.log("exercices", exercices);
   }
 
 
