@@ -1,0 +1,997 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+  <head>
+	<title>EstiMATHeur</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="css/bootstrap-colorpicker.min.css" rel="stylesheet">
+    <link href="css/dice-1.0.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+	
+	<script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap-colorpicker.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-select.min.js"></script>
+	<script src="js/qrcode.min.js"></script>
+	<script src="js/instascan.min.js"></script>
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+	<style>
+	@font-face {
+	  font-family: "Pictchou";
+	  src: url('fonts/pictchou.ttf');
+	}
+	h2 {
+	  clear:both;
+	  font-size: 22px;
+	}
+	
+	h1 a {
+	  color: white;
+	  text-decoration: underline;
+	}
+	h1 a:hover, h1 a:focus {
+	  color: white;
+	}
+	
+	.hands{
+	  font-size: 2em;
+	  font-family: "Pictchou";
+	  padding-right: 0.2em;
+	}
+	
+	#list-title {
+	  clear:both;
+	  font-size: 22px;
+	  text-align:center;
+	}
+	
+	#game {
+	  width: 100%;
+	}
+
+	#unit {
+	  display: inline-block;
+	  background-color: lightgrey;
+	  border-left: 1px solid black;
+	  border-right: 1px solid black;
+	  border-bottom: 1px solid black;
+	}
+
+	#margin-size {
+	  display: inline-block;
+	  background-color: lightgreen;
+	  border-left: 1px solid black;
+	  border-right: 1px solid black;
+	  border-bottom: 1px solid black;
+	}
+
+	#graduation-table {
+	  margin-top:40px;
+	  border-bottom: 1px solid black;
+	  cursor: pointer;
+	  background-color: lightgrey;
+	  border-left: 1px solid black;
+	  border-right: 1px solid black;
+	}
+	#graduation-table td {
+	  height: 3em;
+	  text-align:center;
+	  border-right: 1px solid transparent;
+	  border-bottom: 1px solid black;
+	}
+
+	#number, #sign {
+	  font-weight: bold;
+	}
+
+	#number-to-find {
+	  font-size: 1.5em;
+	}
+	
+	#ok	{
+	  position: absolute;
+	  display:none;
+	  color: green;
+	}
+
+	#ok div {
+	  border-left: 1px solid black;
+	  height: 4em;
+	}
+
+	#find, #end {
+	  font-size: 18px;
+	}
+	
+	#ko	{
+	  position: absolute;
+	  color: red;
+	  display:none;
+	}
+
+	#ko div {
+	  border-left: 1px solid black;
+	  height: 4em;
+	}
+
+	#menu, #about {
+	  text-align: center;
+	}
+	
+	#numbering-table {
+	  margin-left: -0.5em;
+	}
+
+	#numbering-table td {
+	  height: 1em;
+	  border: 1px solid transparent;
+	  text-align: left;
+	}
+	#numbering-table td span{
+	  display:none;
+	}
+
+	table tr td.td-btn-group {
+	  padding: 0px;
+	  text-align: center;
+	  vertical-align: middle;
+	}
+
+	.dice {
+	  font-size: 2em;
+	  padding-right: 0.2em;
+	}
+	</style>
+  </head>
+  <body role='document'>
+	<div class="modal fade" id="share">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+			<h4 class="modal-title">Partager</h4>
+		  </div>
+		  <div class="modal-body">
+			Lien à garder pour modifier l'exercice sur un autre poste :<br/>
+			<a id="shareEditURL" target="_blank" href=""></a>
+			<hr>
+			Lien et QRCode pour lancer l'exercice :<br/>
+			<a id="shareURL" target="_blank" href=""></a>
+			<div id="shareQRCode"></div><br/>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<div class="modal fade" id="scanner">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+			<h4 class="modal-title">Lecture de QRCode</h4>
+		  </div>
+		  <div class="modal-body">
+			<video width="80%" id="preview"></video>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+
+	<h1><a href="#">EstiMATHeur</a>	<button class="btn btn-default scan"><i class="fa fa-2x fa-qrcode"></i></button></h1>
+	<div class='container' role='main'>
+	  <div id='menu'>
+		<br/>
+		<p><button class="btn btn-default btn-lg scan"><i class="fa fa-2x fa-qrcode"></i> Scanner un QRCode</button></p>
+		<br/>
+		<p><button class="btn btn-default btn-lg" id="try"><i class="fa fa-2x fa-hand-o-up"></i> Essayer un exercice</button></p>
+		<br/>
+		<p><button class="btn btn-default btn-lg" id="create"><i class="fa fa-2x fa-edit"></i> Créer un exercice</button></p>
+		<br/>
+	  </div>
+	  <div id='about'>
+		<hr/>
+		<p>Ce programme est sous licence GPL2, plus d'informations sur le site du projet  <a target="_blank" href="https://matthieusalvat.github.io/estiMATHeur/">sur GitHub</a>.</p>
+
+		<p>Merci à <a target="_blank" href="https://lakanal.net/aide/pictchou.htm">lakanal.net</a> d'autoriser l'utilisation de leur police de caractères Picthchou pour ce site</p>
+	  </div>
+	  <div id='options' style="display: none">
+		<h2>Paramétrer un exercice</h2>
+		<div class="form-group col-xs-12 col-sm-6">
+		  <label for="dark-color">Début </label>
+		  <input type="number" id="min" value="0" class="form-control" />
+		</div>
+		<div class="form-group col-xs-12 col-sm-6">
+		  <label for="dark-color">Fin </label>
+		  <input type="number" id="max" value="10" class="form-control" />
+		</div>
+		<div class="form-group col-xs-12 col-sm-6">
+		  <label for="numbering">Type de numérotation</label>
+		  <select id="numbering" class="selectpicker" data-width="100%">
+			<option value="">aucune</option>
+			<option value="eu">toutes les unités</option>
+			<option value="esu">une unité sur deux</option>
+			<option value="1" selected>une seule</option>
+			<option value="2">deux</option>
+			<option value="3">trois</option>
+			<option value="4">quatre</option>
+			<option value="5">cinq</option>
+		  </select>
+		</div>
+		<div class="form-group col-xs-12 col-sm-6">
+		  <label for="graduation">Type de graduation</label>
+		  <select id="graduation" class="selectpicker" data-width="100%">
+			<option value="" selected>aucune</option>
+			<option value="eu">toutes les unités</option>
+			<option value="esu">une unité sur deux</option>
+			<option value="1">une seule</option>
+			<option value="2">deux</option>
+			<option value="3">trois</option>
+			<option value="4">quatre</option>
+			<option value="5">cinq</option>
+		  </select>
+		</div>
+		<div class="form-group col-xs-12 col-sm-6">
+		  <label for="margin">Marge d'erreur</label>
+		  <select id="margin" class="selectpicker" data-width="100%">
+			<option value="2p">2%</option>
+			<option value="5p">5%</option>
+			<option value="10p">10%</option>
+			<option value="20p">20%</option>
+			<option value="1" selected>une unité</option>
+			<option value="2">deux unités</option>
+			<option value="3">trois unités</option>
+			<option value="4">quatre unités</option>			
+			<option value="5">cinq unités</option>			
+		  </select>
+		</div>
+		<div class="form-group col-xs-12 col-sm-6">
+		  <label for="total">Nombre de questions pour l'exercice</label>
+		  <input type="number" id="total" value="10" class="form-control" />
+		</div>
+		<div class="form-group col-xs-12 col-sm-6">
+		  <label for="tolerance">Tolérance d'erreur pour valider l'exercice</label>
+		  <select id="tolerance" class="selectpicker" data-width="100%">
+			<option value="0">zéro erreur</option>
+			<option value="1">une erreur</option>
+			<option value="2">deux erreurs</option>
+			<option value="3">trois erreurs</option>
+			<option value="4">quatre erreurs</option>
+			<option value="5">cinq erreurs</option>
+			<option value="2p">2%</option>
+			<option value="5p">5%</option>
+			<option value="10p" selected>10%</option>
+			<option value="20p">20%</option>
+			<option value="25p">20%</option>
+			<option value="30p">30%</option>
+			<option value="40p">40%</option>
+			<option value="50p">50%</option>
+			<option value="75p">75%</option>
+			<option value="100p">100%</option>
+		  </select>
+		</div>
+		<div class="form-group col-xs-12 col-sm-6">
+		  <label for="display">Quantité affichées sous forme de</label>
+		  <select id="display" class="selectpicker" data-width="100%">
+			<option value="n" selected>chiffres arabes</option>
+			<option value="H">chiffres héxadécimaux</option>
+			<option value="r">chiffres romains</option>
+			<option value="d">dés</option>
+			<option value="h">mains</option>
+			<option value="b">petites boites (5 cases)</option>
+			<option value="B">grandes boites (10 cases)</option>
+		  </select>
+		</div>
+		<div class="form-group col-xs-12">
+		  <button class="btn btn-default btn-primary start">Appliquer</button>
+		  <button class="btn btn-default share" id="exercices">Partager</button>
+		</div>
+	  </div>
+	  <div id='game' style="display: none">
+		<div id="ok">
+		  <i class="fa fa-2x fa-check-circle " aria-hidden="true"></i>
+		  <div>&nbsp;</div>
+		</div>
+		<div id="ko">
+		  <i class="fa fa-2x fa-ban" aria-hidden="true"></i>
+		  <div>&nbsp;</div>
+		</div>
+		<div id="find" style="display: none;">
+		  <p id="list-title" style="display:none">Exercice n°<span class="exercice"></span> sur <span class="exercice-total"></span></p>
+		  <h2>Question n°<span class="index"></span> sur <span class="total"></span></h2>
+		  <p id="number-to-find">Place le nombre : <span id="sign" style="display:none">-</span><span id="number"></span></p>
+		</div>
+		<table id="graduation-table">
+		</table>
+		
+		<table id="numbering-table">
+		</table>
+		<div class="form-group col-xs-12 col-sm-6">
+		  Taille d'une unité : <div id="unit">&nbsp;</div>
+		</div>
+		<div class="form-group col-xs-12 col-sm-6">
+		  Taille de la marge d'erreur : <div id="margin-size">&nbsp;</div>
+		</div>
+	  </div>
+	  <div id='end' style="display: none">
+		<h2>Exercice terminé !</h2>
+		<p>Tu as fait <span class="error"></span> erreur<span class="many">s</span></p>
+		<p class="winner" style="display: none"><i class="fa fa-check-circle" aria-hidden="true"></i> Bravo! Tu as réussi l'exercice</p>
+		
+		<p class="next" style="display: none">Tu peux passer à l'exercice suivant
+		  <button class="btn btn-default btn-primary btn-lg start-next"><i class="fa fa-caret-square-o-right"></i></button>
+		</p>
+
+		<p class="restart" style="display: none">Mais tu peux aussi essayer de faire moins d'erreur
+		  <button class="btn btn-default btn-lg start"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+		</p>
+
+		<p class="not-winner" style="display: none">
+		  <i class="fa fa-ban" aria-hidden="true"></i> Tu dois pouvoir faire mieux ! Réessaye l'exercice
+		  <button class="btn btn-default btn-primary btn-lg start"><i class="fa fa-2x fa-refresh" aria-hidden="true"></i></button>
+		</p>
+		
+		<p class="done" style="display: none">
+		  Tu as terminé la suite d'exercice !
+		</p>
+
+	  </div>
+	  <div id='list' style="display: none">
+		<h2>Gérer une suite d'exercices</h2>
+		<div class="form-group col-xs-12 col-sm-6">
+		  <button class="btn btn-default btn-primary" id="add"><i class="fa fa-plus"></i> Ajouter l'exercice courant</button>
+		  <span id="edit">
+			<button class="btn btn-default btn-primary" id="save"><i class="fa fa-save"></i> Sauvegarder les modifications</button>
+			<button class="btn btn-default" id="cancel"><i class="fa fa-ban"></i> Annuler les modifications</button>
+		  </span>
+		</div>
+		<table class="table table-bordered">
+		  <thead>
+			<tr>
+			  <th>n°</th><th>min</th><th>max</th><th>questions</th><th>graduation</th><th>numérotation</th><th>marge d'erreur</th><th>tolérance</th><th>affichage</th><th>actions</th>
+			</tr>
+		  </thead>
+		  <tbody>
+			
+		  </tbody>
+		</table>
+		<div class="form-group col-xs-12 col-sm-6">
+		  <button class="btn btn-default share" id="list">Partager</button>
+		</div>
+	  </div>
+	</div>
+  </body>
+  <script>
+  $.urlParam = function(name){
+	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null){
+	  return null;
+    } else{
+	  return results[1] || 0;
+    }
+  }
+  function romanize (num) {
+    if (isNaN(num))
+      return NaN;
+    var digits = String(+num).split(""),
+      key = ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM",
+        "","X","XX","XXX","XL","L","LX","LXX","LXXX","XC",
+        "","I","II","III","IV","V","VI","VII","VIII","IX"],
+      roman = "",
+      i = 3;
+    while (i--)
+      roman = (key[+digits.pop() + (i * 10)] || "") + roman;
+    return Array(+digits.join("") + 1).join("M") + roman;
+  }
+  
+  function swap(json){
+	var ret = {};
+	for(var key in json){
+      ret[json[key]] = key;
+	}
+	return ret;
+  }
+
+  function parseURL(url) {
+    var parser = document.createElement('a'),
+      searchObject = {},
+      queries, split, i;
+    // Let the browser do the work
+    parser.href = url;
+    // Convert query string to object
+    queries = parser.search.replace(/^\?/, '').split('&');
+    for( i = 0; i < queries.length; i++ ) {
+      split = queries[i].split('=');
+      searchObject[split[0]] = split[1];
+    }
+    return {
+      protocol: parser.protocol,
+      host: parser.host,
+      hostname: parser.hostname,
+      port: parser.port,
+      pathname: parser.pathname,
+      search: parser.search,
+      searchObject: searchObject,
+      hash: parser.hash
+    };
+  }
+
+  const url2options={
+	"m": "min",
+	"M": "max",
+	"e": "margin",
+	"n": "numbering",
+	"g": "graduation",
+	"t": "total",
+	"T": "tolerance",
+	"d": "display",
+  };
+
+  const unity2str = {
+	"" : "aucune",
+	"eu" : "toutes les unités",
+	"esu" : "une unité sur deux",
+  };
+  const display2str = {
+	"n" : "chiffres arabes",
+	"d" : "dés",
+	"h" : "mains",
+	"r" : "chiffres romains",
+	"H" : "chiffres héxadécimaux",
+	"b" : "petites boites",
+	"B" : "grandes boites",
+  };
+
+  const options2url=swap(url2options);
+
+  
+  const conf={
+	numberToFind: null,
+	lastNumber: null,
+	exercice:0,
+	mode: '',
+	size: null,
+	index: 0,
+	total: 0,
+	error: 0,
+	margin: 0,
+  };
+  const opt={};
+  let exercices=[];
+  const hands2char=["0","K", "L", "M", "N", "O", "Q", "R", "S", "T", "U"];
+  const smallbox2char=[";","a", "b", "d", "e", "f"];
+  const largebox2char=[";g","ag", "bg", "dg", "eg", "fg", "fa", "fb", "fd", "fe", "ff"];  
+  
+  const qrcode = new QRCode($("#shareQRCode")[0], {
+	correctLevel : QRCode.CorrectLevel.L
+  });
+
+  let scanner;
+  $(".scan").on("click", () => {
+	$("#scanner").modal("show");
+	if (!scanner) {
+	  scanner = new Instascan.Scanner({ video: $('#preview')[0], scanPeriod: 5 });
+	  scanner.addListener('scan', function (content) {
+		console.log(content);
+		const url = parseURL(content);
+		console.log(url);
+		$("#scanner").modal("hide");
+		if (url && url.searchObject && url.searchObject.e) {
+		  url2opt(url.searchObject.e);
+		  conf.mode="g";
+		  $("#game").show();
+		  $("#end").hide();
+		  $("#menu").hide();
+		  $("#list").hide();
+		  $("#options").hide();
+		  loadExercice(0);
+		  start();
+		}
+	  });
+	  Instascan.Camera.getCameras().then(function (cameras) {
+		if (cameras.length > 0) {
+		  scanner.start(cameras[0]);
+		} else {
+		  console.error('No cameras found.');
+		}
+	  }).catch(function (e) {
+		console.error(e);
+	  });
+	}
+  });
+  
+  
+  if ($.urlParam('m')) {
+	conf.mode=$.urlParam('m');
+  }
+  if ($.urlParam('i')) {
+	conf.exercice=parseInt($.urlParam('i'));
+  }
+  init();
+
+  $("#create").on("click", () => {
+	conf.mode="m";
+	init();
+  });  
+  $("#try").on("click", () => {
+	url2opt("m:0,M:10,e:1,n:,g:eu,t:5,T:2,d:n|m:0,M:10,e:1,n:,g:esu,t:5,T:2,d:d|m:0,M:10,e:1,n:,g:1,t:5,T:2,d:h|m:0,M:10,e:1,n:,g:,t:5,T:2,d:B");
+	conf.mode="g";
+	console.log(opt, exercices);
+	$("#game").show();
+	$("#end").hide();
+	$("#about").hide();
+	$("#menu").hide();
+	$("#list").hide();
+	$("#options").hide();
+	loadExercice(0);
+	start();
+  });  
+  $("#add").on("click", () => {
+	exercices.push({...opt});
+	displayExercices();
+  });
+
+  $("h1 a").on("click", () => {
+	conf.mode="";
+	init();
+  });
+
+
+  $("#graduation-table").on("click", (e) => {
+	const numberClicked=parseInt($(e.target).attr("number"))-1;
+	const pos = e.offsetX+numberClicked*opt.size;
+	if (pos > ((conf.numberToFind) * opt.size) - conf.margin / 2 && pos < ((conf.numberToFind) * opt.size) + conf.margin / 2) {
+	  $("#ok")
+		.css("top",$("#graduation-table").offset().top-42)
+		.css("left", e.pageX)
+		.show();
+	  $(`#ref${conf.numberToFind}`).css("border-right-color", "black");
+	  $(`#number${conf.numberToFind} span`).show();
+	  setTimeout(() => {
+		$("#ok").hide();
+		step();
+	  }, 1500);
+	} else {
+	  conf.error++;	  
+	  $("#ko")
+		.css("top",$("#graduation-table").offset().top-42)
+		.css("left", e.pageX)
+		.show();
+	  setTimeout(() => {
+		$("#ko").hide();
+	  }, 1000);
+
+	}
+  });
+  
+  $("#list table").on("click", "button", (e) => {
+	const index=parseInt($(e.target).closest("button").attr("index"));
+	const action=$(e.target).closest("button").attr("action");
+	if (action == "edit") {
+	  conf.exercice=index;
+	  conf.mode="e";
+	  init();
+	} else if (action == "remove") {
+	  exercices.splice(index, 1);
+	} else if (action == "up") {
+	  if (index > 0) {
+		const copy = {...exercices[index]};
+		exercices.splice(index, 1);
+		exercices.splice(index-1, 0, copy)
+	  }
+	} else if (action == "down") {
+	  if (index < exercices.length) {
+		const copy = {...exercices[index]};
+		exercices.splice(index, 1);
+		exercices.splice(index+1, 0, copy)
+	  }
+	}
+
+	displayExercices();
+  });
+
+
+  $("#cancel").on("click", () => {
+	conf.mode="m";
+	init();
+  });
+
+  $("#save").on("click", () => {
+	exercices[conf.exercice]={...opt};
+	conf.mode="m";
+	displayExercices();	
+	init();
+  });
+
+  $(".start").on("click",() => {
+	start();
+  });
+
+  $(".start-next").on("click",() => {
+	loadExercice(conf.exercice+1);
+	start();
+  });
+  
+
+  $(window).resize(() => {
+	display();
+  });
+
+  $(".share").on("click", (e) => {
+	let url=location.protocol + '//' + location.host + location.pathname + '?e=';
+	if ($(e.target).closest("button").attr("id")=="list") {
+	  const list = exercices.map((e)=>{
+		return opt2url(e);
+	  });
+	  url += list.join("|");
+	} else {
+	  url += opt2url(opt);
+	}
+	qrcode.makeCode(url);
+	$("#shareURL").attr('href', url+"&m=g").text(url+"&m=g");
+	$("#shareEditURL").attr('href', url+"&m=m").text(url+"&m=m");
+	$("#share").modal("show");
+  });
+  
+  function opt2url(optConf) {
+	const urlParts=[];
+	Object.keys(options2url).forEach((o) => {
+	  const urlPart=`${options2url[o]}:${optConf[o]}`;
+	  urlParts.push(urlPart);
+	});
+	return urlParts.join(",");
+  }
+
+  function url2optParts(parts) {
+	const c={};
+	parts.split(',').forEach((p) => {
+	  const v=p.split(':');
+	  const k=url2options[v[0]];
+	  c[k]=v[1];
+	});
+	return c;
+  }
+  
+  function url2opt(urlParam) {
+	exercices=[];
+	const ex=urlParam.split('|');
+	let c;
+	ex.forEach((e,i) => {
+	  if (e && e!="") {
+		exercices.push(url2optParts(e));
+	  }
+	});
+  }
+
+
+  function loadExercice(index) {
+	conf.exercice=index;
+	for (k in exercices[conf.exercice]) {
+	  $(`#${k}`).val(exercices[conf.exercice][k]);
+	  $('.selectpicker').selectpicker('refresh')		
+	}
+	if (exercices.length>1) {
+	  $("#list-title").show();
+	  $(".exercice").text(conf.exercice+1);
+	  $(".exercice-total").text(exercices.length);
+	}
+	if (exercices.length>1) {
+	  $("#list-title").show();
+	  $(".exercice").text(conf.exercice+1);
+	  $(".exercice-total").text(exercices.length);
+	}
+  }
+  
+  function init() {
+	if (conf.mode=='g') {
+	  url2opt($.urlParam('e'));
+
+	  $("#game").show();
+	  $("#end").hide();
+	  $("#menu").hide();
+	  $("#about").hide();
+	  $("#list").hide();
+	  $("#options").hide();
+	  loadExercice(0);
+	  start();
+	} else if (conf.mode=='m') {
+	  const exercicesStored=JSON.parse(localStorage.getItem("exercices"));
+	  if (exercicesStored) {
+		exercices=exercicesStored;
+	  }
+	  if ($.urlParam('e')) {
+		url2opt($.urlParam('e'));
+	  }
+	  
+	  $("#game").show();
+	  $("#end").hide();
+	  $("#menu").hide();
+	  $("#options").show();
+	  $("#about").hide();
+	  $("#add").show();
+	  $("#edit").hide();
+	  $("#cancel").hide();
+	  
+	  for (k in exercices[exercices.length-1]) {
+		$(`#${k}`).val(exercices[exercices.length-1][k]);
+		$('.selectpicker').selectpicker('refresh')		
+	  }
+	  
+	  displayExercices();
+	  start();
+
+	} else if (conf.mode=='e') {
+	  $("#game").show();
+	  $("#end").hide();
+	  $("#options").show();
+	  $("#menu").hide();
+	  $("#about").hide();
+	  $("#add").hide();
+	  $("#edit").show();
+	  $("#cancel").show();
+	  for (k in exercices[conf.exercice]) {
+		$(`#${k}`).val(exercices[conf.exercice][k]);
+		$('.selectpicker').selectpicker('refresh')		
+	  }
+	  start();
+
+	} else {
+	  $("#game").hide();
+	  $("#about").show();
+	  $("#end").hide();
+	  $("#menu").show();
+	  $("#options").hide();
+	  $("#add").hide();
+	  $("#edit").hide();
+	  $("#list").hide();
+	  $("#cancel").hide();
+	}
+	
+  }
+
+  function display() {
+	const width=$(".container").width()-10;
+	const columns=opt.max-opt.min;
+	opt.size = parseInt(width/columns);
+	if (m = opt.margin.match(/^(\d+)(p)?/)) {
+	  const s = parseInt(m[1]);
+	  if (m[2]=="p") {
+		conf.margin=width*s/100;
+	  } else  {
+		conf.margin=s*opt.size;
+	  }
+	}
+	$("#margin-size").width(conf.margin);
+	$("#graduation-table").empty();
+	$("#numbering-table").empty();
+	$("#unit").width(opt.size-2);
+	let i=0;
+	for (i = opt.min; i<opt.max; i++) {
+	  const col = $("<td>").attr("id", `ref${i+1}`).width(opt.size).attr("number", i+1).text(" ");
+	  $("#graduation-table").append(col);
+	  
+	  const num = $("<td>").attr("id", `number${i}`).width(opt.size).append($("<span>").text(i));
+	  $("#numbering-table").append(num);
+	}
+	$(`#ref${i}`).css("border-right-color", "black");
+	const num = $("<td>").attr("id", `number${i}`).text(i);
+	
+	$("#numbering-table").append(num);
+	$(`#number${opt.min} span`).show();
+	$(`#number${i+1} span`).show();
+	if (m=opt.graduation.match(/^(\d+)$/)) {
+	  let p=parseInt((opt.max+opt.min)/(parseInt(m[1])+1));
+	  for (j = 0; j<parseInt(m[1]); j++) {
+		$(`#ref${opt.min+p}`).css("border-right-color", "black");
+		p+=p;
+	  }
+	} else {
+	  switch(opt.graduation) {
+		case "none":
+		  // code block
+		  break;
+		case "eu":
+		  $("#graduation-table td").css("border-right-color", "black");
+		  break;
+		case "esu":
+		  $("#graduation-table td:nth-child(even)").css("border-right-color", "black");
+		  break;
+	  }
+	}
+	if (m=opt.numbering.match(/^(\d+)$/)) {
+	  let p=parseInt((opt.max+opt.min)/(parseInt(m[1])+1));
+	  for (j = 1; j<=parseInt(m[1]); j++) {
+		$(`#number${p*j} span`).show();
+	  }
+	} else {
+	  switch(opt.numbering) {
+		case "none":
+		  break;
+		case "eu":
+		  $("#numbering-table td span").show();
+		  break;
+		case "esu":
+		  $("#numbering-table td:nth-child(odd) span").show();
+		  break;
+	  }
+	}
+	$("#graduation-table").focus();
+	
+  }
+  
+  function start() {
+	$("#game").show();
+	$("#end").hide();
+
+	opt.min=parseInt($("#min").val());
+	opt.max=parseInt($("#max").val());
+	opt.margin=$("#margin").val();
+	opt.numbering=$("#numbering").val();
+	opt.display=$("#display").val();
+	opt.graduation=$("#graduation").val();
+	opt.total=parseInt($("#total").val());
+	opt.tolerance=$("#tolerance").val();
+	
+	display();
+	
+	conf.total=opt.total;
+	conf.error=0;
+	conf.index=0;
+	step();
+  }
+  
+  function displayExercices() {
+	localStorage.setItem("exercices", JSON.stringify(exercices));
+	$("#list").show();
+	$("#list table tbody").empty();
+	if (exercices.length>=1) {
+	    exercices.forEach((e,i) => {
+		if (e && e!="") {
+		  $("#list table tbody").append(
+			$("<tr>")
+			  .append($("<td>").text(i+1))
+			  .append($("<td>").text(e.min))
+			  .append($("<td>").text(e.max))
+			  .append($("<td>").text(e.total))
+			  .append($("<td>").text(unity2str[e.graduation] == null ? e.graduation : unity2str[e.graduation]))
+			  .append($("<td>").text(unity2str[e.numbering] == null ? e.numbering : unity2str[e.numbering]))
+			  .append($("<td>").text(e.margin.replace('p', '%')))
+			  .append($("<td>").text(e.tolerance.replace('p', '%')))
+			  .append($("<td>").text(display2str[e.display]))
+			  .append($("<td>").addClass("td-btn-group").append($("<div>").addClass("btn-group")
+				.append($("<button>").addClass("btn btn-default").attr("index", i).attr("action", "up").attr("title", "monter").html("<i class='fa fa-arrow-up'></i>"))
+				.append($("<button>").addClass("btn btn-default").attr("index", i).attr("action", "down").attr("title", "descendre").html("<i class='fa fa-arrow-down'></i>"))
+				.append($("<button>").addClass("btn btn-info").attr("index", i).attr("action", "edit").attr("title", "modifier").html("<i class='fa fa-edit'></i>"))
+				.append($("<button>").addClass("btn btn-danger").attr("index", i).attr("action", "remove").attr("title", "supprimer").html("<i class='fa fa-trash'></i>"))
+			  ))
+		  );
+		}
+	  });
+	}
+
+  }
+
+  function step() {
+	conf.index++;
+	$(".total").text(conf.total);
+	$(".index").text(conf.index);
+	if (conf.index == conf.total+1) {
+	  $(".error").text(conf.error);
+	  if (conf.error>1) {
+		$(".many").show();
+		$(".restart").show();
+	  } else {
+		$(".many").hide();
+	  }
+	  $("#game").hide();
+	  $("#end").show();
+	  let winner=false;
+	  if (m = opt.tolerance.match(/^(\d+)(p)?/)) {
+		const toleranceNumber=parseInt(m[1]);
+		let tolerance;
+		if (m[2]=="p") {
+		  if (conf.error/(conf.total+conf.error)*100<=toleranceNumber) {
+			winner=true;
+		  }
+		} else  {
+		  if (conf.error<=toleranceNumber) {
+			winner=true;
+		  }
+		}
+	  }
+	  if (conf.error>0) {
+		$(".restart").show();
+	  } else {
+		$(".restart").hide();
+	  }
+	  if (winner) {
+		$(".winner").show();
+		$(".not-winner").hide();
+		if (conf.mode=="g") {
+		  if (conf.exercice<exercices.length-1) {
+			$(".next").show();
+		  } else {
+			if (exercices.length>1) {
+			  $(".next").hide();
+			  $(".done").show();
+			}
+		  }
+		}
+	  } else {
+		$(".winner").hide();
+		$(".next").hide();
+		$(".not-winner").show();
+	  }
+	} else {
+	  display();	  
+	  conf.lastNumber=conf.numberToFind;
+	  do {
+		conf.numberToFind = Math.floor(Math.random() * (opt.max-opt.min-1))+opt.min+1;
+	  } while (conf.numberToFind === conf.lastNumber);
+	  $("#find").show();
+	  $("#number").empty();
+	  if (conf.numberToFind<0) {
+		$("#sign").show();
+	  } else {
+		$("#sign").hide();
+	  }
+	  const number = Math.abs(conf.numberToFind);
+	  switch(opt.display) {
+		case "n":
+		  $("#number").text(number);
+		  break;
+		case "H":
+		  $("#number").text(number.toString(16).toUpperCase());
+		  break;
+		case "d":
+		  const fullDices=parseInt(number / 6);
+		  const restDice = number % 6;
+		  for (i=0; i<fullDices; i++) {
+			$("#number").append($("<span>").addClass("dice dice-6"));
+		  }
+		  $("#number").append($("<span>").addClass(`dice dice-${restDice}`));
+		  break;
+		case "h":
+		  const fullHands=parseInt(number / 10);
+		  let restHands = number % 10;
+		  for (i=0; i<fullHands; i++) {
+			$("#number").append($("<span>").addClass("hands").text(hands2char[10]));
+		  }
+		  $("#number").append($("<span>").addClass("hands").text(hands2char[restHands]));
+		  break;
+		case "b":
+		  const fullSBox=parseInt(number / 5);
+		  let restSBox = number % 5;
+		  for (i=0; i<fullSBox; i++) {
+			$("#number").append($("<span>").addClass("hands").text(smallbox2char[5]));
+		  }
+		  $("#number").append($("<span>").addClass("hands").text(smallbox2char[restSBox]));
+		  break;
+		case "B":
+		  const fullLBox=parseInt(number / 10);
+		  let restLBox = number % 10;
+		  for (i=0; i<fullLBox; i++) {
+			$("#number").append($("<span>").addClass("hands").text(largebox2char[10]));
+		  }
+		  $("#number").append($("<span>").addClass("hands").text(largebox2char[restLBox]));
+		  break;
+		case "r":
+		  $("#number").text(romanize(number));
+		  break;
+	  }
+
+	}
+  }
+  </script>
+</html>
