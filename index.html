@@ -378,8 +378,8 @@
   </body>
   <script>
   $.urlParam = function(name){
-	console.log(window.location.href);
 	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	console.log(name, results);
     if (results==null){
 	  return null;
     } else{
