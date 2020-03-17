@@ -23,6 +23,9 @@
 	  font-family: "Pictchou";
 	  src: url('fonts/pictchou.ttf');
 	}
+	hr {
+	  clear:both;
+	}
 	h2 {
 	  clear:both;
 	  font-size: 22px;
@@ -200,12 +203,6 @@
 		<p><button class="btn btn-default btn-lg" id="create"><i class="fa fa-2x fa-edit"></i> Créer un exercice</button></p>
 		<br/>
 	  </div>
-	  <div id='about'>
-		<hr/>
-		<p>Ce programme est sous licence GPL2, plus d'informations sur le site du projet  <a target="_blank" href="https://github.com/matthieusalvat/estiMATHeur/">sur GitHub</a>.</p>
-
-		<p>Merci à <a target="_blank" href="https://lakanal.net/aide/pictchou.htm">lakanal.net</a> d'autoriser l'utilisation de leur police de caractères Picthchou pour ce site</p>
-	  </div>
 	  <div id='options' style="display: none">
 		<h2>Paramétrer un exercice</h2>
 		<div class="form-group col-xs-12 col-sm-6">
@@ -370,6 +367,11 @@
 		  <button class="btn btn-default btn-danger" id="remove-all"><i class='fa fa-trash'></i> Tout supprimer</button>
 		  <button class="btn btn-default share" id="list">Partager</button>
 		</div>
+	  </div>
+	  <div id='about'>
+		<hr/>
+		<p>Ce programme est sous licence GPL2, plus d'informations sur le site du projet  <a target="_blank" href="https://github.com/matthieusalvat/estiMATHeur/">sur GitHub</a>.</p>
+		<p>Merci à <a target="_blank" href="https://lakanal.net/aide/pictchou.htm">lakanal.net</a> d'autoriser l'utilisation de leur police de caractères Picthchou pour ce site</p>
 	  </div>
 	</div>
   </body>
@@ -727,7 +729,7 @@
 	  $("#end").hide();
 	  $("#menu").hide();
 	  $("#options").show();
-	  $("#about").hide();
+	  $("#about").show();
 	  $("#add").show();
 	  $("#edit").hide();
 	  $("#cancel").hide();
