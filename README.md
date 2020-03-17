@@ -2,7 +2,7 @@
 
 ## Comment ça marche ?
 
-L'estiMATHeur permet de créer un ou plusieurs exercices de placement de nomnre.
+L'estiMATHeur permet de créer un ou plusieurs exercices de placement de nombre.
 
 ## Liste d'exercies
 
