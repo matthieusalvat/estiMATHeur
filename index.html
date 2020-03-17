@@ -367,6 +367,7 @@
 		  </tbody>
 		</table>
 		<div class="form-group col-xs-12 col-sm-6">
+		  <button class="btn btn-default btn-danger" id="remove-all"><i class='fa fa-trash'></i> Tout supprimer</button>
 		  <button class="btn btn-default share" id="list">Partager</button>
 		</div>
 	  </div>
@@ -524,7 +525,14 @@
   $("#create").on("click", () => {
 	conf.mode="m";
 	init();
-  });  
+  });
+
+  $("#remove-all").on("click", () => {
+	if (window.confirm("Voulez-vous vraiment supprimer tous les exercices ?")) { 
+	  exercices=[];
+	  displayExercices();
+	}
+  });
   $("#try").on("click", () => {
 	url2opt("m:0,M:10,e:1,n:,g:eu,t:5,T:2,d:n|m:0,M:10,e:1,n:,g:esu,t:5,T:2,d:d|m:0,M:10,e:1,n:,g:1,t:5,T:2,d:h|m:0,M:10,e:1,n:,g:,t:5,T:2,d:B");
 	conf.mode="g";
